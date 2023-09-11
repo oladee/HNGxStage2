@@ -4,11 +4,15 @@ import imdb from "../assets/imdb.svg";
 import tomatoes from "../assets/PngItem_1381056 1.svg";
 import play from "../assets/Play.svg";
 import hamburger from '../assets/Menu.svg'
+import { useState } from "react";
 
-const Landing = ({ data }) => {
+const Landing = ({ data, setUserInput, userInput}) => {
   let justOne = data.filter((name, index) => index < 1);
   console.log(justOne);
   let src = `https://image.tmdb.org/t/p/original${justOne[0].poster_path}`;
+
+  
+
   return (
     <div
       className="image w-full h-[70vh] bg-no-repeat bg-cover  px-4 py-4 lg:px-20"
@@ -23,6 +27,8 @@ const Landing = ({ data }) => {
               type="text"
               name="userSearch"
               id="userSearch"
+              value={userInput}
+              onChange={(event) => setUserInput(event.target.value)}
               placeholder="What do you want to watch"
               className="bg-transparent opacity- font-normal w-3/4 placeholder-white"
             />
