@@ -5,13 +5,13 @@ import tomatoes from '../assets/PngItem_1381056 1.svg'
 import play from '../assets/Play.svg'
 
 const Landing = ({ data }) => {
-  console.log(data);
+    
   let justOne = data.filter((name, index) => index < 1);
-  console.log(justOne[0].poster_path);
+  console.log(justOne)
   let src = `https://image.tmdb.org/t/p/original${justOne[0].poster_path}`;
   return (
     <div
-      className="image w-full h-[70vh] bg-no-repeat bg-cover bg-contain px-4 py-4"
+      className="image w-full h-[70vh] bg-no-repeat bg-cover  px-4 py-4"
       style={{ backgroundImage: "url(" + src + ")" }}
     >
       <nav>
@@ -30,12 +30,12 @@ const Landing = ({ data }) => {
           </div>
         </ul>
       </nav>
-      <section>
-        <h2></h2>
+      <section className="text-white">
+        <h2>{justOne[0].title}</h2>
         <div>
           <div>
-            <img src="" alt="" />
-            <p></p>
+            <img src={imdb} alt="Imdb logo" />
+            <p>{justOne[0].vote_count}</p>
           </div>
           <div>
             <img src="" alt="" />
