@@ -21,8 +21,8 @@ const Landing = ({ data }) => {
           <div className="flex border-2 border-white rounded-md justify-between w-52 md:w-[50%] px-1 items-center">
             <input
               type="text"
-              name=""
-              id=""
+              name="userSearch"
+              id="userSearch"
               placeholder="What do you want to watch"
               className="bg-transparent opacity- font-normal w-3/4 placeholder-white"
             />
@@ -50,8 +50,8 @@ const Landing = ({ data }) => {
           </div>
         </div>
         <p className="py-3 md:pt-5">{justOne[0].overview}</p>
-        <button className="flex bg-rose-700 py-2 px-3 rounded-lg md:mt-5">
-          <img src={play} alt="" />
+        <button className="flex bg-rose-700 py-2 px-3 rounded-lg md:mt-5 hover:text-rose-700 hover:bg-white">
+          <img src={play} alt="watch trailer" />
           WATCH TRAILER
         </button>
       </section>
