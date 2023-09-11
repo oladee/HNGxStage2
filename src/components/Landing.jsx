@@ -30,22 +30,25 @@ const Landing = ({ data }) => {
           </div>
         </ul>
       </nav>
-      <section className="text-white">
-        <h2>{justOne[0].title}</h2>
-        <div>
-          <div>
+      <section className="text-white w-2/3 pt-4 md:pt-11">
+        <h2 className="text-[2.6rem] md:text-[3rem]">{justOne[0].title}</h2>
+        <div className="flex">
+          <div className="flex">
             <img src={imdb} alt="Imdb logo" />
-            <p>{justOne[0].vote_count}</p>
+            <p>{justOne[0].vote_average}/10</p>
           </div>
-          <div>
-            <img src="" alt="" />
-            <p></p>
+          <div className="flex ml-7">
+            <img src={tomatoes} alt="" />
+            <p>{justOne[0].vote_count}</p>
           </div>
         </div>
         <p>
-
+        {justOne[0].overview}
         </p>
-        <button></button>
+        <button className="flex">
+            <img src={play} alt="" />
+            WATCH TRAILER
+        </button>
       </section>
     </div>
   );
