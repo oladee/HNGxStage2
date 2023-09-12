@@ -48,7 +48,7 @@ const App = () => {
       ) : (
         <>
           <Landing data={data} setUserInput={setUserInput} userInput={userInput}/>
-          <Featured />
+          <Featured data={data}/>
         </>
       )}
     </>

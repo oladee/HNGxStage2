@@ -15,3 +15,38 @@
   background-size: 100%;
   background-position-y: 40%;
 }
+
+.card-list {
+  display: flex;
+  padding: 15px 0px;
+  flex-wrap: nowrap;
+  gap: 15px;
+  overflow-x: auto;
+}
+.card-profile {
+  width: 68%;
+  font-size: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 10px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.card--img {
+  width: 100%;
+  border-radius: 9px;
+  margin-bottom: 9px;
+}
+
+@media(min-width:1024px) {
+  .card-list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    place-content: center;
+  }
+  .card-profile {
+    width: 95%;
+  }
+}
