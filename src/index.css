@@ -16,13 +16,6 @@
   background-position-y: 40%;
 }
 
-.card-list {
-  display: flex;
-  padding: 15px 0px;
-  flex-wrap: nowrap;
-  gap: 15px;
-  overflow-x: auto;
-}
 .card-profile {
   width: 68%;
   font-size: 12px;
@@ -34,19 +27,9 @@
   flex-direction: column;
 }
 .card--img {
-  width: 100%;
+  width: 300px;
+  height: 290px;
+  object-fit: cover;
   border-radius: 9px;
   margin-bottom: 9px;
-}
-
-@media(min-width:1024px) {
-  .card-list {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    place-content: center;
-  }
-  .card-profile {
-    width: 95%;
-  }
 }

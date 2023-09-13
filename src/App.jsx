@@ -4,6 +4,7 @@ import Landing from "./components/Landing";
 import Featured from "./components/Featured";
 import axios from "axios";
 import LoadingAnim from "./components/LoadingAnim";
+import Footer from "./components/Footer";
 
 const App = () => {
   const [data, setData] = useState([
@@ -19,25 +20,32 @@ const App = () => {
   const [userInput, setUserInput] = useState('')
   const [loading, setLoading] = useState(false);
 
+
   useEffect(() => {
     async function getData() {
       try {
         setLoading(true);
         const value = await axios.get(
-          `https://api.themoviedb.org/3/discover/movie?api_key=${
-            import.meta.env.VITE_SOME_KEY
-          }`
-        );
+          `https://api.themoviedb.org/3/movie/top_rated`,{
+            params:{
+              api_key: import.meta.env.VITE_SOME_KEY,
+              language: 'en-US',
+              page: 1
+            }
+          });
         setData(value.data.results);
-        setLoading(false)
-        console.log(value.data.results);
+        setTimeout(()=>{
+          setLoading(false)
+        },2000)
+        
       } catch (error) {
         setLoading(false);
         console.log(error);
       }
     }
     getData();
-  }, []);
+  },[]);
+
 
   return (
     <>
@@ -49,7 +57,11 @@ const App = () => {
         <>
           <Landing data={data} setUserInput={setUserInput} userInput={userInput}/>
           <Featured data={data}/>
+          <Footer/>
         </>
+      )}
+      {loading ? (<div><LoadingAnim/></div>):(
+        <></>
       )}
     </>
   );

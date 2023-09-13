@@ -4,15 +4,16 @@ import imdb from "../assets/imdb.svg";
 import tomatoes from "../assets/PngItem_1381056 1.svg";
 import play from "../assets/Play.svg";
 import hamburger from '../assets/Menu.svg'
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-const Landing = ({ data, setUserInput, userInput}) => {
+const Landing = ({ data, setData, loading, setLoading, setUserInput, userInput}) => {
   let justOne = data.filter((name, index) => index < 1);
-  console.log(justOne);
   let src = `https://image.tmdb.org/t/p/original${justOne[0].poster_path}`;
 
+  const [inputValue, SetInputValue] = useState('')
   
-
+  
   return (
     <div
       className="image w-full h-[70vh] bg-no-repeat bg-cover  px-4 py-4 lg:px-20"
@@ -27,12 +28,13 @@ const Landing = ({ data, setUserInput, userInput}) => {
               type="text"
               name="userSearch"
               id="userSearch"
-              value={userInput}
-              onChange={(event) => setUserInput(event.target.value)}
+              value={inputValue}
+              onChange={(event) => SetInputValue(event.target.value)}
               placeholder="What do you want to watch"
               className="bg-transparent opacity- font-normal w-3/4 placeholder-white"
             />
-            <img src={searchIcon} alt="searchIcon" />
+            <img src={searchIcon} alt="searchIcon" 
+            />
           </div>
 
           <div className="hidden md:flex items-center">
@@ -41,8 +43,8 @@ const Landing = ({ data, setUserInput, userInput}) => {
           </div>
         </ul>
       </nav>
-      <section className="text-white w-[72%] md:w-[46%] pt-4 md:pt-8">
-        <h2 className="text-[2.53rem] font-bold md:text-[3.45rem]">
+      <section className="text-white w-[72vw] md:w-[46vw] pt-4 md:pt-8">
+        <h2 className="text-[7.53vw] font-bold md:text-[3.45rem]">
           {justOne[0].title}
         </h2>
         <div className="flex md:pt-3">
@@ -52,11 +54,11 @@ const Landing = ({ data, setUserInput, userInput}) => {
           </div>
           <div className="flex ml-7 md:ml-20">
             <img src={tomatoes} alt="" />
-            <p>{justOne[0].vote_count}</p>
+            <p className="">{justOne[0].vote_count}</p>
           </div>
         </div>
-        <p className="py-3 md:pt-5">{justOne[0].overview}</p>
-        <button className="flex bg-rose-700 py-2 px-3 rounded-lg md:mt-5 hover:text-rose-700 hover:bg-white">
+        <p className="py-3 md:pt-5 text-[0.8rem] md:text-[1.2rem]">{justOne[0].overview}</p>
+        <button className="flex bg-rose-700 py-2 px-3 rounded-lg md:mt-5 hover:text-rose-700 hover:bg-white ">
           <img src={play} alt="watch trailer" />
           WATCH TRAILER
         </button>
