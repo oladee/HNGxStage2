@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import LoadingAnim from './LoadingAnim';
 
 const MovieDetail = () => {
     const baseUrl = 'https://api.themoviedb.org/3'
     const {id} = useParams()
-    const [details, setDetails] = useState(null);
+    const [details, setDetails] = useState({
+        value:'key'
+    });
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
@@ -36,6 +37,10 @@ const MovieDetail = () => {
 
     },[id])
     console.log(details.id)
+    if (!details) {
+        return <div>Loading...</div>;
+      }
+
   return (
     <div>
         {details.id}
