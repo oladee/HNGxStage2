@@ -1,5 +1,4 @@
 import axios from 'axios';
-import React from 'react'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import LoadingAnim from './LoadingAnim';
@@ -12,13 +11,13 @@ const MovieDetail = () => {
     const [error, setError] = useState(null)
 
     useEffect(()=>{
-        async function getDetails(){
+        async function getDetails(cd){
             try{
                 setLoading(true)
-                let response = await axios.get(`${baseUrl}/movie/${id}`,{
+                const response = await axios.get(`${baseUrl}/movie/${cd}`,{
                     params:{
                         api_key: import.meta.env.VITE_SOME_KEY,
-                        language: 'en-US'
+                        language: 'en-US',
                     }
             })
             console.log(response.data)
@@ -33,14 +32,19 @@ const MovieDetail = () => {
                 console.log(error)
             }
         }
-        getDetails()
-    },[id])
+        getDetails(id)
 
+    },[id])
+    console.log(details.id)
   return (
     <div>
-
+        {details.id}
     </div>
   )
 }
 
 export default MovieDetail
+
+
+
+
