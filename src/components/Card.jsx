@@ -1,6 +1,7 @@
 import React from 'react';
 import favourite from '../assets/Favorite.svg';
 import {useState} from 'react'
+import {Link} from "react-router-dom"
 
 const Card = ({title,poster, releaseDate, ...props}) => {
     let src = `https://image.tmdb.org/t/p/original${poster}`
@@ -12,6 +13,7 @@ const Card = ({title,poster, releaseDate, ...props}) => {
       setFavourites(!favourites)
     }
   return (
+    <Link to={`/movies/${props.id}`}>
     <div className="card-profile md:w-[95%] transition duration-300 transform rounded shadow-lg hover:scale-90" data-testid ='movie-card' >
         <img src={src} alt="movie image" data-testid={poster} className='card--img'/>
         <h1 data-testid ={title}>{title}</h1>
@@ -25,6 +27,7 @@ const Card = ({title,poster, releaseDate, ...props}) => {
         </div>
         
     </div>
+    </Link>
   )
 }
 
