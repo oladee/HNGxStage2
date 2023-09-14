@@ -18,9 +18,10 @@ const Card = ({title,poster, releaseDate, ...props}) => {
         <p data-testid ={releaseDate}>{releaseDate}</p>
         <div className='absolute cursor-pointer right-[10px]'>
         <img onClick={(e)=>{
+          e.preventDefault()
           e.stopPropagation()
           handleFavourite()
-        }} style={favourites ?{backgroundColor: 'rgba(190, 18, 60, 1)', borderRadius: '15px'}:{backgroundColor: 'transparent'}} src={favourite} alt="favourite logo" />
+        }} style={favourites ? {backgroundColor: 'rgba(190, 18, 60, 1)', borderRadius: '15px'}:{backgroundColor: 'transparent'}} src={favourite} alt="favourite logo" />
         </div>
         
     </div>

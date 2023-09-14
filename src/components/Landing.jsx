@@ -4,16 +4,45 @@ import imdb from "../assets/imdb.svg";
 import tomatoes from "../assets/PngItem_1381056 1.svg";
 import play from "../assets/Play.svg";
 import hamburger from '../assets/Menu.svg'
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 
-const Landing = ({ data, setData, loading, setLoading, setUserInput, userInput}) => {
-  let justOne = data.filter((name, index) => index < 1);
+const Landing = ({ data, setData, loading, setLoading}) => {
+
+const baseUrl = 'https://api.themoviedb.org/3'
+
+const search = async (queries) =>{
+    try{
+      setLoading(true)
+        const res = await axios.get(`${baseUrl}/search/movie`,{
+            params:{
+                api_key: import.meta.env.VITE_SOME_KEY,
+                query:`${queries}`,
+                language: 'en-US',
+                page: 1
+              }
+        })
+        setData(res.data.results)
+        setTimeout(()=>{
+          setLoading(false)
+        },2000)
+    }
+    catch (error){
+      setLoading(false);
+        console.log(error);
+    }
+}
+
+  let notNullImages = data.filter(item => item.poster_path != null)
+  let justOne = notNullImages.filter((name, index) => index < 1);
   let src = `https://image.tmdb.org/t/p/original${justOne[0].poster_path}`;
 
   const [inputValue, SetInputValue] = useState('')
   
-  
+  function handleSearch(){
+    search(inputValue)
+  }
+
   return (
     <div
       className="image w-full h-[70vh] bg-no-repeat bg-cover  px-4 py-4 lg:px-20"
@@ -33,7 +62,7 @@ const Landing = ({ data, setData, loading, setLoading, setUserInput, userInput})
               placeholder="What do you want to watch"
               className="bg-transparent opacity- font-normal w-3/4 placeholder-white"
             />
-            <img src={searchIcon} alt="searchIcon" 
+            <img src={searchIcon} alt="searchIcon" onClick={handleSearch}
             />
           </div>
 

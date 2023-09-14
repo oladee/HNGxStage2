@@ -17,7 +17,7 @@ const App = () => {
       vote_count: " ",
     },
   ]);
-  const [userInput, setUserInput] = useState('')
+
   const [loading, setLoading] = useState(false);
 
 
@@ -55,7 +55,7 @@ const App = () => {
         </div>
       ) : (
         <>
-          <Landing data={data} setUserInput={setUserInput} userInput={userInput}/>
+          <Landing data={data} setLoading={setLoading} setData={setData}/>
           <Featured data={data}/>
           <Footer/>
         </>
