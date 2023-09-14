@@ -7,6 +7,8 @@ import movieIcon from "../assets/Movie Projector.svg";
 import tvIcon from "../assets/Favorite.svg";
 import upcomingIcon from "../assets/Calendar.svg";
 import playmovie from '../assets/Frame 3.svg'
+import LoadingAnim from '../components/LoadingAnim'
+
 
 const MovieDetail = () => {
   const baseUrl = "https://api.themoviedb.org/3";
@@ -42,25 +44,32 @@ const MovieDetail = () => {
 
   let imagepath = `https://image.tmdb.org/t/p/original${details.backdrop_path}`
 
-  const milliArr = details.release_date.split('-')
+  let milliArr = details.release_date?.split("-")
   console.log(milliArr)
 
   return (
-    <div className="p-2">
-      <Nav />
-        <div className=" w-full md:h-[350px] bg-no-repeat bg-cover  px-4 py-4 lg:px-20 flex items-center justify-center"
-      style={{ backgroundImage: "url(" + imagepath + ")" }}>
-          <img src={playmovie} alt="play icon" />
-        </div>
-        <div>
-            <h3 data-testid='movie-title'>{details.title}</h3>
-            <div>
-            <h3 data-testid='release-date'>{Date.UTC(milliArr[0], milliArr[1], milliArr[2])}</h3>
-            <p data-testid= 'movie-runtime'>{details.runtime}</p>
-            </div>
-        </div>
-        <p>{details.overview}</p>
-    </div>
+    <>
+    {loading ? (<LoadingAnim/>):(
+        <div className="p-2 md:flex">
+        <Nav />
+          <div>
+          <div className=" w-full md:h-[350px] bg-no-repeat bg-cover  px-4 py-4 lg:px-20 flex items-center justify-center"
+        style={{ backgroundImage: "url(" + imagepath + ")" }}>
+            <img src={playmovie} alt="play icon" />
+          </div>
+          <div>
+              <h3 data-testid='movie-title'>{details.title}</h3>
+              <div>
+              {/* <h3 data-testid='release-date'>{Date.UTC(milliArr[0], milliArr[1], milliArr[2])}</h3> */}
+              <p data-testid= 'movie-runtime'>{details.runtime}</p>
+              </div>
+          </div>
+          <p>{details.overview}</p>
+          </div>
+      </div>
+    )}
+    </>
+    
   );
 };
 
@@ -69,7 +78,7 @@ export default MovieDetail;
 const Nav = () => {
   return (
     <>
-      <nav className="p-2">
+      <nav className="p-2 md:w-[40%]">
         <img src={logo} alt="logo" />
         <div className="hidden md:block">
           <div className="flex gap-2 items-center">
