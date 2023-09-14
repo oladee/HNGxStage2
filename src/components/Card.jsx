@@ -13,11 +13,11 @@ const Card = ({title,poster, releaseDate, ...props}) => {
       setFavourites(!favourites)
     }
   return (
-    <Link to={`/movies/${props.id}`}>
-    <div className="card-profile md:w-[95%] transition duration-300 transform rounded shadow-lg hover:scale-90" data-testid ='movie-card' >
-        <img src={src} alt="movie image" data-testid={poster} className='card--img'/>
-        <h1 data-testid ={title}>{title}</h1>
-        <p data-testid ={releaseDate}>{releaseDate}</p>
+
+    <Link to={`/movies/${props.id}`} className="card-profile md:w-[95%] transition duration-300 transform rounded shadow-lg hover:scale-90" data-testid ='movie-card' >
+        <img src={src} alt="movie image" data-testid='movie-card' className='card--img'/>
+        <h1 data-testid ='movie-title'>{title}</h1>
+        <p data-testid ='release-date'>{releaseDate}</p>
         <div className='absolute cursor-pointer right-[10px]'>
         <img onClick={(e)=>{
           e.preventDefault()
@@ -26,8 +26,8 @@ const Card = ({title,poster, releaseDate, ...props}) => {
         }} style={favourites ? {backgroundColor: 'rgba(190, 18, 60, 1)', borderRadius: '15px'}:{backgroundColor: 'transparent'}} src={favourite} alt="favourite logo" />
         </div>
         
-    </div>
     </Link>
+    
   )
 }
 
