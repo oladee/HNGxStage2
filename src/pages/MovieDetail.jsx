@@ -10,6 +10,7 @@ import playmovie from "../assets/Frame 3.svg";
 import tickets from '../assets/Two Tickets.svg'
 import LoadingAnim from "../components/LoadingAnim";
 import options from '../assets/List.svg'
+import Footer from '../components/Footer'
 
 const MovieDetail = () => {
   const baseUrl = "https://api.themoviedb.org/3";
@@ -42,8 +43,12 @@ const MovieDetail = () => {
     }
     getDetails(id);
   }, [id]);
-
-  let imagepath = `https://image.tmdb.org/t/p/original${details.backdrop_path}`;
+  if(details.backdrop_path){
+    var imagepath = `https://image.tmdb.org/t/p/original${details.backdrop_path}`;
+  }else{
+    imagepath = `https://image.tmdb.org/t/p/original${details.poster_path}`;
+  }
+  
 
   let milliArr = details.release_date?.split("-");
   console.log(milliArr);
@@ -52,8 +57,8 @@ const MovieDetail = () => {
     <>
       {loading ? (
         <LoadingAnim />
-      ) : (
-        <div className=" md:pr-14 md:flex">
+      ) : (<>
+      <div className=" md:pr-14 md:flex">
           <Nav />
           <div className="p-2 ml-auto md:w-[85%]">
             <div
@@ -65,13 +70,15 @@ const MovieDetail = () => {
             <div>
               <h3 data-testid="movie-title" className="text-2xl mt-3">{details.title}</h3>
               <div>
-                {/* <h3 data-testid='release-date'>{Date.UTC(milliArr[0], milliArr[1], milliArr[2])}</h3> */}
+                <h5>
+                  Release date: <span data-testid='release-date'>{new Date(details.release_date).toDateString()}</span>
+                </h5>
                 <h5>Runtime: <span data-testid="movie-runtime">{details.runtime}</span> minutes</h5>
               </div>
             </div>
             <div className="lg:flex">
               <div className=" lg:w-[70%]">
-              <p>{details.overview}</p>
+              <p className="pr-8" data-testid="movie-overview">{details.overview}</p>
               <h5>Director: </h5>
               <h5>Writers: </h5>
               <h5>Stars: </h5>
@@ -90,6 +97,9 @@ const MovieDetail = () => {
             </div>
           </div>
         </div>
+        <Footer/>
+      </>
+        
       )}
     </>
   );
@@ -101,13 +111,13 @@ const Nav = () => {
   return (
     <>
       <nav className=" md:border-r-2 mr-10 md:rounded-tr-3xl">
-        <img src={logo} alt="logo" className="py-8 px-4"/>
+        <img src={logo} alt="logo" className="py-2 md:py-8 px-4"/>
         <div className=" hidden md:block">
-          <NavLink className="focus:border-r-rose-700 focus:border-r-2 flex gap-2 items-center pl-8 py-6 focus:bg-rose-200 focus:text-rose-700 hover:bg-rose-200 hover:text-rose-700">
+          <NavLink to='/' className="focus:border-r-rose-700 focus:border-r-2 flex gap-2 items-center pl-8 py-6 focus:bg-rose-200 focus:text-rose-700 hover:bg-rose-200 hover:text-rose-700">
             <img src={homeIcon} alt="home Icon" />
             <p>Home</p>
           </NavLink>
-          <NavLink className="flex gap-2 items-center pl-8 py-6 focus:bg-rose-200 focus:text-rose-700 focus:border-r-rose-700 focus:border-r-2 hover:bg-rose-200 hover:text-rose-700">
+          <NavLink active role="link" aria-activedescendant="true" className="flex gap-2 items-center pl-8 py-6 focus:bg-rose-200 focus:text-rose-700 focus:border-r-rose-700 focus:border-r-2 hover:bg-rose-200 hover:text-rose-700">
             <img src={movieIcon} alt="movie Icon" />
             <p>Movies</p>
           </NavLink>

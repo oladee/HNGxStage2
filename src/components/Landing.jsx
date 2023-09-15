@@ -7,7 +7,7 @@ import hamburger from '../assets/Menu.svg'
 import { useState } from "react";
 import axios from "axios";
 
-const Landing = ({ data, setData, loading, setLoading}) => {
+const Landing = ({ data, setData, setErrors, setLoading}) => {
 
 const baseUrl = 'https://api.themoviedb.org/3'
 
@@ -29,7 +29,7 @@ const search = async (queries) =>{
     }
     catch (error){
       setLoading(false);
-        console.log(error);
+        setErrors(true)
     }
 }
 
@@ -52,7 +52,7 @@ const search = async (queries) =>{
         <ul className="flex items-center justify-between  text-white">
           <img src={logo} alt="logo" className="w-[33%] md:w-52 " />
 
-          <div className="flex border-2 border-white rounded-md justify-between w-52 md:w-[50%] px-1 items-center">
+          <form className="flex border-2 border-white rounded-md justify-between w-52 md:w-[50%] px-1 items-center" onSubmit={handleSearch}>
             <input
               type="text"
               name="userSearch"
@@ -64,7 +64,7 @@ const search = async (queries) =>{
             />
             <img src={searchIcon} alt="searchIcon" onClick={handleSearch}
             />
-          </div>
+          </form>
 
           <div className="hidden md:flex items-center">
             <h5 className="mr-5">Sign in</h5>

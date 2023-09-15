@@ -5,6 +5,7 @@ import Featured from "../components/Featured";
 import axios from "axios";
 import LoadingAnim from "../components/LoadingAnim";
 import Footer from "../components/Footer";
+import Noffound from '../pages/Noffound'
 
 const Homepage = () => {
   const [data, setData] = useState([
@@ -19,6 +20,8 @@ const Homepage = () => {
   ]);
 
   const [loading, setLoading] = useState(false);
+
+  const [errors, setErrors] = useState(false)
 
   useEffect(() => {
     async function getData() {
@@ -41,6 +44,7 @@ const Homepage = () => {
       } catch (error) {
         setLoading(false);
         console.log(error);
+        setErrors(true)
       }
     }
     getData();
@@ -48,13 +52,13 @@ const Homepage = () => {
 
   return (
     <>
-      {loading ? (
+      {errors ? (<Noffound/>):loading ? (
         <div>
           <LoadingAnim />
         </div>
       ) : (
         <>
-          <Landing data={data} setLoading={setLoading} setData={setData} />
+          <Landing data={data} setLoading={setLoading} setData={setData} setErrors={setErrors} />
           <Featured data={data} />
           <Footer />
         </>
