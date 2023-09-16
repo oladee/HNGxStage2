@@ -70,10 +70,8 @@ const MovieDetail = () => {
             <div>
               <h3 data-testid="movie-title" className="text-2xl mt-3">{details.title}</h3>
               <div>
-                <h5>
-                  Release date: <span data-testid='release-date'>{new Date(details.release_date).toDateString()}</span>
-                </h5>
-                <h5>Runtime: <span data-testid="movie-runtime">{details.runtime}</span> minutes</h5>
+                <h5 data-testid='release-date'>{details.release_date}</h5>
+                <h5 data-testid="movie-runtime">{details.runtime}</h5>
               </div>
             </div>
             <div className="lg:flex">
