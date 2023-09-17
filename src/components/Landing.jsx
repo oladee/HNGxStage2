@@ -39,7 +39,8 @@ const search = async (queries) =>{
 
   const [inputValue, SetInputValue] = useState('')
   
-  function handleSearch(){
+  function handleSearch(e){
+    e.preventDefault()
     search(inputValue)
   }
 
