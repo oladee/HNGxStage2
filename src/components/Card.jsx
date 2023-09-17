@@ -9,6 +9,14 @@ const Card = ({ title, poster, releaseDate, ...props }) => {
 
   const [favourites, setFavourites] = useState(false);
 
+  const utcReleaseYear = (release_date) => {
+    const localDate = new Date(release_date);
+    const year = localDate.getUTCFullYear();
+    const month = (localDate.getUTCMonth() + 1).toString().padStart(2, "0");
+    const day = localDate.getUTCDate().toString().padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
   function handleFavourite() {
     setFavourites(!favourites);
   }
@@ -23,7 +31,7 @@ const Card = ({ title, poster, releaseDate, ...props }) => {
             className="card--img"
           />
           <h1 data-testid="movie-title">{title}</h1>
-          <p data-testid="release-date">{releaseDate}</p>
+          <p data-testid="release-date">{utcReleaseYear(releaseDate)}</p>
           <div className="absolute cursor-pointer right-[10px]">
             <img
               onClick={(e) => {
