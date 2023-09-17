@@ -31,7 +31,7 @@ const Card = ({ title, poster, releaseDate, ...props }) => {
             className="card--img"
           />
           <h1 data-testid="movie-title">{title}</h1>
-          <p data-testid="release-date">{utcReleaseYear(releaseDate)}</p>
+          <p data-testid="movie-release-date">{utcReleaseYear(releaseDate)}</p>
           <div className="absolute cursor-pointer right-[10px]">
             <img
               onClick={(e) => {
