@@ -11,6 +11,7 @@ import tickets from '../assets/Two Tickets.svg'
 import LoadingAnim from "../components/LoadingAnim";
 import options from '../assets/List.svg'
 import Footer from '../components/Footer'
+import Noffound from "./Noffound";
 
 const MovieDetail = () => {
   const baseUrl = "https://api.themoviedb.org/3";
@@ -19,7 +20,7 @@ const MovieDetail = () => {
     value: "key",
   });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [errors, setErrors] = useState(null);
 
   useEffect(() => {
     async function getDetails(cd) {
@@ -36,7 +37,7 @@ const MovieDetail = () => {
 
       } catch (error) {
         setLoading(false);
-        console.log(error);
+        setErrors(true)
       }
     }
     getDetails(id);
@@ -59,7 +60,7 @@ const MovieDetail = () => {
     <>
       {loading ? (
         <LoadingAnim />
-      ) : (<>
+      ) : errors ? (<Noffound/>): (<>
       <div className=" md:pr-14 md:flex">
           <Nav />
           <div className="p-2 ml-auto md:w-[85%]">
