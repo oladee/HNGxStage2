@@ -11,7 +11,7 @@ import tickets from '../assets/Two Tickets.svg'
 import LoadingAnim from "../components/LoadingAnim";
 import options from '../assets/List.svg'
 import Footer from '../components/Footer'
-import Noffound from "./Noffound";
+import BadRequest from "./BadRequest";
 
 const MovieDetail = () => {
   const baseUrl = "https://api.themoviedb.org/3";
@@ -20,7 +20,8 @@ const MovieDetail = () => {
     value: "key",
   });
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState(null);
+  const [errors, setErrors] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
     async function getDetails(cd) {
@@ -38,6 +39,7 @@ const MovieDetail = () => {
       } catch (error) {
         setLoading(false);
         setErrors(true)
+        setErrorMsg(`Error fetching movie details: , ${error.message}`);
       }
     }
     getDetails(id);
@@ -60,7 +62,7 @@ const MovieDetail = () => {
     <>
       {loading ? (
         <LoadingAnim />
-      ) : errors ? (<Noffound/>): (<>
+      ) : errors ? (<BadRequest message={errorMsg}/>): (<>
       <div className=" md:pr-14 md:flex">
           <Nav />
           <div className="p-2 ml-auto md:w-[85%]">
