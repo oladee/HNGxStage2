@@ -31,11 +31,9 @@ const MovieDetail = () => {
             language: "en-US",
           },
         });
-        console.log(response.data);
         setDetails(response.data);
-        setTimeout(() => {
-          setLoading(false);
-        }, 1500);
+        setLoading(false);
+
       } catch (error) {
         setLoading(false);
         console.log(error);
@@ -49,13 +47,13 @@ const MovieDetail = () => {
     imagepath = `https://image.tmdb.org/t/p/original${details.poster_path}`;
   }
   
-  const utcReleaseYear = (release_date) => {
-    const localDate = new Date(release_date);
-    const year = localDate.getUTCFullYear();
-    const month = (localDate.getUTCMonth() + 1).toString().padStart(2, "0");
-    const day = localDate.getUTCDate().toString().padStart(2, "0");
-    return `${year}-${month}-${day}`;
-  };
+  // const utcReleaseYear = (release_date) => {
+  //   const localDate = new Date(release_date);
+  //   const year = localDate.getUTCFullYear();
+  //   const month = (localDate.getUTCMonth() + 1).toString().padStart(2, "0");
+  //   const day = localDate.getUTCDate().toString().padStart(2, "0");
+  //   return `${year}-${month}-${day}`;
+  // };
 
   return (
     <>
@@ -74,7 +72,7 @@ const MovieDetail = () => {
             <div>
               <h3 data-testid="movie-title" className="text-2xl mt-3">{details.title}</h3>
               <div>
-                <h5 data-testid="movie-release-date">{utcReleaseYear(details.release_date)}</h5>
+                <h5 data-testid="movie-release-date">{details.release_date}</h5>
                 <h5 data-testid="movie-runtime">{details.runtime}</h5>
               </div>
             </div>

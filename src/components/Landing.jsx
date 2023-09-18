@@ -23,9 +23,7 @@ const search = async (queries) =>{
               }
         })
         setData(res.data.results)
-        setTimeout(()=>{
-          setLoading(false)
-        },2000)
+        setLoading(false)
     }
     catch (error){
       setLoading(false);
