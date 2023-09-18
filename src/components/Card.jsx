@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 const Card = ({ title, poster, releaseDate, ...props }) => {
   let src = `https://image.tmdb.org/t/p/original${poster}`;
-  let utcDateArr = releaseDate.split("-");
 
   const [favourites, setFavourites] = useState(false);
 

@@ -4,7 +4,7 @@ import Card from './Card'
 
 const Featured = ({data}) => {
   let notNullImages = data.filter(item => item.poster_path != null)
-  let filteredData = notNullImages.filter((item, index) => index > 0 && index < 11)
+  let filteredData = notNullImages.filter((item, index) => index >= 0 && index < 10)
   const carddetails = filteredData.map(items => {
     return <Card key={items.id} poster={items.poster_path} title={items.title} releaseDate={items.release_date} id={items.id}/>
   })
