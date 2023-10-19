@@ -44,7 +44,7 @@ const search = async (queries) =>{
 
   return (
     <div
-      className="image w-full h-[70vh] bg-no-repeat bg-cover  px-4 py-4 lg:px-20"
+      className="image w-full h-[80vh] bg-no-repeat bg-cover  px-4 py-4 lg:px-20"
       style={{ backgroundImage: "url(" + src + ")" }}
     >
       <nav>

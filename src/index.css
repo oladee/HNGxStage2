@@ -12,12 +12,13 @@
   font-family: 'DM Sans', sans-serif;
 }
 .image{
-  background-size: 100% 100%;
-  background-position-y: 40%;
+  /* background-size: 100% 100%; */
+  background-position-y: 10%;
+  object-fit: cover;
 }
 
 .card-profile {
-  width: 68%;
+  width: 250px;
   font-size: 12px;
   border: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 10px;

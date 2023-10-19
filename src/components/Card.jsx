@@ -21,7 +21,7 @@ const Card = ({ title, poster, releaseDate, ...props }) => {
   }
   return (
     <div data-testid="movie-card">
-      <Link to={`/movies/${props.id}`}>
+      <Link to={`/movies/${props.id}`} className="">
         <div className="card-profile md:w-[95%] transition duration-300 transform rounded shadow-lg hover:scale-90">
           <img
             src={src}

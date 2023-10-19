@@ -15,7 +15,7 @@ const Featured = ({data}) => {
         <h3 className='text-[1.25rem] font-bold'>Featured Movie</h3>
         <p className='flex text-rose-700'>See more <img src={arrow} alt="arrow icon" /></p>
       </div>
-      <div className='card-list flex py-[15px] flex-nowrap gap-[15px] overflow-x-auto md:w-[100%] md:grid md:place-content-center md:grid-cols-[repeat(4,auto)]'>
+      <div className='card-list flex py-[15px] flex-nowrap gap-[15px] overflow-x-auto w-[95%] md:w-[100%] md:grid md:place-content-center md:grid-cols-[repeat(4,auto)]'>
         {carddetails}
       </div>
     </div>
